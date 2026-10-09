@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faixa Prévia</title>
+<meta name="description" content="Proposta de simulador e diagnóstico do IEG-M para prefeituras paulistas, construída com dados públicos do TCESP. Iniciativa independente, sem vínculo com o Tribunal.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Faixa Prévia">
+<meta property="og:description" content="Simulador e diagnóstico do IEG-M para prefeituras paulistas, com dados públicos. Proposta em exploração.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2228'/%3E%3Crect x='5' y='19' width='3.5' height='8' rx='1' fill='%2375bfc8'/%3E%3Crect x='10.5' y='16' width='3.5' height='11' rx='1' fill='%2340a0ab'/%3E%3Crect x='16' y='13' width='3.5' height='14' rx='1' fill='%2342a2ac'/%3E%3Crect x='21.5' y='9' width='3.5' height='18' rx='1' fill='%2373c3cc'/%3E%3Crect x='21' y='5' width='6' height='2.5' rx='1' fill='%23f7cc4b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('faixa-previa-tema');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#inicio" aria-label="Faixa Prévia, início">
+      <svg class="brand-mark" viewBox="0 0 28 24" aria-hidden="true" focusable="false">
+        <rect class="bm f-c" x="1" y="15" width="4" height="8" rx="1"/>
+        <rect class="bm f-cp" x="7" y="12" width="4" height="11" rx="1"/>
+        <rect class="bm f-b" x="13" y="8" width="4" height="15" rx="1"/>
+        <rect class="bm f-bp" x="19" y="4" width="4" height="19" rx="1"/>
+        <rect class="bm-mark" x="18" y="0" width="9" height="2.5" rx="1"/>
+      </svg>
+      <span class="brand-name">Faixa Prévia</span>
+      <span class="brand-tag">nome provisório</span>
+    </a>
+    <nav class="nav" aria-label="Seções da página">
+      <ul>
+        <li><a href="#ieg-m">O índice</a></li>
+        <li><a href="#retrato">Retrato</a></li>
+        <li><a href="#pontos">Pontos na mesa</a></li>
+        <li><a href="#produto">Produto</a></li>
+        <li><a href="#exemplo">Exemplo</a></li>
+        <li><a href="#arquitetura">Arquitetura</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#mercado">Mercado</a></li>
+        <li><a href="#riscos">Riscos</a></li>
+        <li><a href="#fontes">Fontes</a></li>
+      </ul>
+    </nav>
+    <button class="theme" id="tema" type="button" aria-label="Tema: automático. Trocar tema">
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.5" class="th-ring"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" class="th-half"/></svg>
+      <span class="theme-l">Auto</span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- HERO -->
+<section class="hero" id="inicio" aria-labelledby="hero-t">
+  <div class="wrap">
+    <p class="eyebrow">Proposta em exploração para prefeituras paulistas</p>
+    <h1 id="hero-t">A prefeitura responde até março e só descobre a faixa do IEG-M em outubro.</h1>
+    <p class="lead">A <strong>Faixa Prévia</strong> <span class="prov">(nome provisório)</span> calcula a faixa provável antes do envio do questionário, mostra os <mark>pontos que ficaram na mesa</mark> e organiza a evidência de cada resposta para a validação.</p>
+
+    <aside class="aviso" aria-label="Aviso de independência">
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8.5" class="av-c"/><rect x="9" y="5" width="2" height="7" rx="1" class="av-i"/><rect x="9" y="13.5" width="2" height="2" rx="1" class="av-i"/></svg>
+      <p><strong>Iniciativa independente, sem vínculo com o Tribunal de Contas do Estado de São Paulo (TCESP).</strong> A página usa só dados públicos. As telas são simulações para discutir a ideia.</p>
+    </aside>
+
+    <figure class="cal" aria-labelledby="cal-t">
+      <figcaption id="cal-t">O calendário de uma edição do IEG-M</figcaption>
+      <ol class="cal-months" aria-hidden="true">
+        <li>dez</li><li>jan</li><li>fev</li><li>mar</li><li>abr</li><li>mai</li><li>jun</li><li>jul</li><li>ago</li><li>set</li><li>out</li>
+      </ol>
+      <ol class="cal-phases">
+        <li class="ph ph-win">
+          <span class="ph-when">Dezembro a 31 de março</span>
+          <span class="ph-what">Questionário aberto</span>
+          <span class="ph-note">A janela da Faixa Prévia: simular, corrigir e reunir evidência antes de enviar.</span>
+        </li>
+        <li class="ph ph-dark">
+          <span class="ph-when">Abril a setembro</span>
+          <span class="ph-what">Análise do Tribunal</span>
+          <span class="ph-note">A prefeitura espera sem saber a própria faixa.</span>
+        </li>
+        <li class="ph ph-res">
+          <span class="ph-when">Outubro</span>
+          <span class="ph-what">Resultado</span>
+          <span class="ph-note">O ano já passou.</span>
+        </li>
+      </ol>
+    </figure>
+
+    <ul class="kpis" aria-label="Números do ano-base 2024">
+      <li class="kpi">
+        <span class="kpi-v">544 <small>de 644</small></span>
+        <span class="kpi-l">municípios em C ou C+ no IEG-M do ano-base 2024</span>
+      </li>
+      <li class="kpi">
+        <span class="kpi-v">0</span>
+        <span class="kpi-l">municípios na faixa A em 11 anos-base, de 2014 a 2024</span>
+      </li>
+      <li class="kpi">
+        <span class="kpi-v">521 <small>de 644</small></span>
+        <span class="kpi-l">entregaram as peças de planejamento fora do prazo, item que vale 150 pontos do <span class="nw">i-Plan</span></span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- O QUE É O IEG-M -->
+<section class="sec" id="ieg-m" aria-labelledby="iegm-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">O índice</p>
+      <h2 id="iegm-t">O que é o IEG-M</h2>
+      <p class="sec-lead">O Índice de Efetividade da Gestão Municipal é calculado pelo TCESP para os 644 municípios paulistas que aparecem no painel do Tribunal. Parte dos pontos vem de um questionário respondido pela prefeitura; parte é calculada pelo próprio Tribunal com dados que ele já recebe. São sete dimensões, cada uma de 0 a 1000 pontos, combinadas em uma nota ponderada e em uma faixa.</p>
+    </header>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Sete dimensões e seus pesos</h3>
+        <ul class="pesos">
+          <li><span class="p-code">i-Educ</span><span class="p-name">Educação</span><span class="p-bar"><span style="width:100%"></span></span><span class="p-v">20%</span></li>
+          <li><span class="p-code">i-Saúde</span><span class="p-name">Saúde</span><span class="p-bar"><span style="width:100%"></span></span><span class="p-v">20%</span></li>
+          <li><span class="p-code">i-Plan</span><span class="p-name">Planejamento</span><span class="p-bar"><span style="width:100%"></span></span><span class="p-v">20%</span></li>
+          <li><span class="p-code">i-Fiscal</span><span class="p-name">Gestão fiscal</span><span class="p-bar"><span style="width:100%"></span></span><span class="p-v">20%</span></li>
+          <li><span class="p-code">i-Amb</span><span class="p-name">Meio ambiente</span><span class="p-bar"><span style="width:50%"></span></span><span class="p-v">10%</span></li>
+          <li><span class="p-code">i-Cidade</span><span class="p-name">Cidades protegidas</span><span class="p-bar"><span style="width:25%"></span></span><span class="p-v">5%</span></li>
+          <li><span class="p-code">i-Gov TI</span><span class="p-name">Governança de TI</span><span class="p-bar"><span style="width:25%"></span></span><span class="p-v">5%</span></li>
+        </ul>
+        <p class="note">Quatro dimensões somam 80% da nota. Um ponto no <span class="nw">i-Plan</span> vale quatro vezes um ponto no <span class="nw">i-Gov TI</span>.</p>
+      </div>
+
+      <div class="card">
+        <h3>Faixas de resultado</h3>
+        <div class="regua" role="img" aria-label="Régua das faixas: C abaixo de 50%, C+ de 50% a 59,99%, B de 60% a 74,99%, B+ de 75% a 89,99%, A a partir de 90% com pelo menos cinco índices em A.">
+          <span class="rg f-c" style="--a:0;--b:50">C</span>
+          <span class="rg f-cp" style="--a:50;--b:60">C+</span>
+          <span class="rg f-b" style="--a:60;--b:75">B</span>
+          <span class="rg f-bp" style="--a:75;--b:90">B+</span>
+          <span class="rg f-a" style="--a:90;--b:100">A</span>
+        </div>
+        <div class="regua-scale regua-scale-open" aria-hidden="true"><span style="--p:0">0%</span><span style="--p:50">50</span><span style="--p:60">60</span><span style="--p:75">75</span><span style="--p:90">90</span></div>
+        <dl class="faixas-def">
+          <div><dt><span class="fx f-a">A</span></dt><dd>90% ou mais e pelo menos cinco índices na faixa A</dd></div>
+          <div><dt><span class="fx f-bp">B+</span></dt><dd>de 75% a 89,99%</dd></div>
+          <div><dt><span class="fx f-b">B</span></dt><dd>de 60% a 74,99%</dd></div>
+          <div><dt><span class="fx f-cp">C+</span></dt><dd>de 50% a 59,99%</dd></div>
+          <div><dt><span class="fx f-c">C</span></dt><dd>abaixo de 50%</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Calendário</h3>
+        <ol class="timeline">
+          <li><b>Dezembro</b> o questionário abre.</li>
+          <li><b>31 de março</b> o questionário fecha.</li>
+          <li><b>Outubro</b> o resultado é publicado.</li>
+        </ol>
+        <p class="note">A edição leva o ano seguinte ao dos dados: o IEG-M 2025 corresponde ao ano-base 2024.</p>
+      </div>
+      <div class="card">
+        <h3>Validação in loco</h3>
+        <p>A fiscalização confere uma amostra das respostas no próprio município e pode confirmar, alterar ou invalidar cada uma.</p>
+        <p class="stat-inline"><span class="si-v">83,12%</span> <span>das respostas validadas foram confirmadas pelo TCE-SC, que aplica o índice em Santa Catarina, em 2018. É uma referência de quanto uma resposta sobrevive à conferência.</span></p>
+      </div>
+      <div class="card">
+        <h3>Rebaixamentos automáticos</h3>
+        <p>Alguns descumprimentos derrubam o índice afetado em um grau, qualquer que seja a pontuação:</p>
+        <ul class="rebx">
+          <li>Despesa com pessoal do Executivo acima de 54% <span class="code">i-Fiscal</span></li>
+          <li>FUNDEB aplicado abaixo de 90% <span class="code">i-Educ</span></li>
+          <li>Aplicação em educação abaixo de 25% <span class="code">i-Educ</span></li>
+          <li>Aplicação em saúde abaixo de 15% <span class="code">i-Saúde</span></li>
+          <li>Aterro de resíduos classificado como inadequado <span class="code">i-Amb</span></li>
+        </ul>
+        <p class="note">A lista completa está na seção 12 do manual da edição 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETRATO -->
+<section class="sec sec-alt" id="retrato" aria-labelledby="retrato-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Dados públicos do painel do TCESP</p>
+      <h2 id="retrato-t">Como estão os municípios</h2>
+      <p class="sec-lead">Faixas oficiais dos 644 municípios do ano-base 2014 ao 2024. O ano-base é o ano dos dados; a edição do índice leva o ano seguinte.</p>
+    </header>
+
+    <div class="destaque">
+      <p class="destaque-v">0,508</p>
+      <div class="destaque-t">
+        <p><strong>A média estadual do ano-base 2024, ponderada pelos pesos oficiais, está na borda entre C e C+.</strong> O limite de C+ é 0,50.</p>
+        <p>O município mediano está em C+: 283 municípios estão em C e 261 em C+. Juntos, são 544 dos 644.</p>
+      </div>
+    </div>
+
+    <figure class="chart" aria-labelledby="ch1-t" aria-describedby="ch1-d">
+      <figcaption>
+        <h3 id="ch1-t">Faixa do IEG-M por ano-base, 2014 a 2024</h3>
+        <p id="ch1-d">Cada linha soma os 644 municípios. Nenhum município chegou à faixa A em nenhum ano. De 2023 para 2024, 133 municípios subiram de faixa, 458 mantiveram e 53 caíram.</p>
+      </figcaption>
+      <!-- gerado:faixas-por-ano --><ul class="legend" aria-label="Legenda das faixas"><li><span class="sw f-c" aria-hidden="true"></span>C</li><li><span class="sw f-cp" aria-hidden="true"></span>C+</li><li><span class="sw f-b" aria-hidden="true"></span>B</li><li><span class="sw f-bp" aria-hidden="true"></span>B+</li><li><span class="sw f-a" aria-hidden="true"></span>A</li></ul><div class="stack-chart" data-tooltip="stack"><div class="stack-row" tabindex="0" role="img" data-ano="2014" data-counts="{&quot;C&quot;: 10, &quot;C+&quot;: 30, &quot;B&quot;: 406, &quot;B+&quot;: 198, &quot;A&quot;: 0}" aria-label="Ano-base 2014. C: 10, C+: 30, B: 406, B+: 198, A: 0."><span class="stack-year">2014</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:10" data-faixa="C" data-n="10"></span><span class="seg f-cp" style="flex-grow:30" data-faixa="C+" data-n="30"></span><span class="seg f-b" style="flex-grow:406" data-faixa="B" data-n="406"><span class="seg-v">406</span></span><span class="seg f-bp" style="flex-grow:198" data-faixa="B+" data-n="198"><span class="seg-v">198</span></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2015" data-counts="{&quot;C&quot;: 35, &quot;C+&quot;: 112, &quot;B&quot;: 434, &quot;B+&quot;: 63, &quot;A&quot;: 0}" aria-label="Ano-base 2015. C: 35, C+: 112, B: 434, B+: 63, A: 0."><span class="stack-year">2015</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:35" data-faixa="C" data-n="35"></span><span class="seg f-cp" style="flex-grow:112" data-faixa="C+" data-n="112"></span><span class="seg f-b" style="flex-grow:434" data-faixa="B" data-n="434"></span><span class="seg f-bp" style="flex-grow:63" data-faixa="B+" data-n="63"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2016" data-counts="{&quot;C&quot;: 75, &quot;C+&quot;: 100, &quot;B&quot;: 385, &quot;B+&quot;: 84, &quot;A&quot;: 0}" aria-label="Ano-base 2016. C: 75, C+: 100, B: 385, B+: 84, A: 0."><span class="stack-year">2016</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:75" data-faixa="C" data-n="75"></span><span class="seg f-cp" style="flex-grow:100" data-faixa="C+" data-n="100"></span><span class="seg f-b" style="flex-grow:385" data-faixa="B" data-n="385"></span><span class="seg f-bp" style="flex-grow:84" data-faixa="B+" data-n="84"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2017" data-counts="{&quot;C&quot;: 136, &quot;C+&quot;: 308, &quot;B&quot;: 197, &quot;B+&quot;: 3, &quot;A&quot;: 0}" aria-label="Ano-base 2017. C: 136, C+: 308, B: 197, B+: 3, A: 0."><span class="stack-year">2017</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:136" data-faixa="C" data-n="136"></span><span class="seg f-cp" style="flex-grow:308" data-faixa="C+" data-n="308"></span><span class="seg f-b" style="flex-grow:197" data-faixa="B" data-n="197"></span><span class="seg f-bp" style="flex-grow:3" data-faixa="B+" data-n="3"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2018" data-counts="{&quot;C&quot;: 94, &quot;C+&quot;: 264, &quot;B&quot;: 275, &quot;B+&quot;: 11, &quot;A&quot;: 0}" aria-label="Ano-base 2018. C: 94, C+: 264, B: 275, B+: 11, A: 0."><span class="stack-year">2018</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:94" data-faixa="C" data-n="94"></span><span class="seg f-cp" style="flex-grow:264" data-faixa="C+" data-n="264"></span><span class="seg f-b" style="flex-grow:275" data-faixa="B" data-n="275"></span><span class="seg f-bp" style="flex-grow:11" data-faixa="B+" data-n="11"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2019" data-counts="{&quot;C&quot;: 178, &quot;C+&quot;: 325, &quot;B&quot;: 137, &quot;B+&quot;: 4, &quot;A&quot;: 0}" aria-label="Ano-base 2019. C: 178, C+: 325, B: 137, B+: 4, A: 0."><span class="stack-year">2019</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:178" data-faixa="C" data-n="178"></span><span class="seg f-cp" style="flex-grow:325" data-faixa="C+" data-n="325"></span><span class="seg f-b" style="flex-grow:137" data-faixa="B" data-n="137"></span><span class="seg f-bp" style="flex-grow:4" data-faixa="B+" data-n="4"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2020" data-counts="{&quot;C&quot;: 304, &quot;C+&quot;: 250, &quot;B&quot;: 89, &quot;B+&quot;: 1, &quot;A&quot;: 0}" aria-label="Ano-base 2020. C: 304, C+: 250, B: 89, B+: 1, A: 0."><span class="stack-year">2020</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:304" data-faixa="C" data-n="304"></span><span class="seg f-cp" style="flex-grow:250" data-faixa="C+" data-n="250"></span><span class="seg f-b" style="flex-grow:89" data-faixa="B" data-n="89"></span><span class="seg f-bp" style="flex-grow:1" data-faixa="B+" data-n="1"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2021" data-counts="{&quot;C&quot;: 447, &quot;C+&quot;: 164, &quot;B&quot;: 33, &quot;B+&quot;: 0, &quot;A&quot;: 0}" aria-label="Ano-base 2021. C: 447, C+: 164, B: 33, B+: 0, A: 0."><span class="stack-year">2021</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:447" data-faixa="C" data-n="447"></span><span class="seg f-cp" style="flex-grow:164" data-faixa="C+" data-n="164"></span><span class="seg f-b" style="flex-grow:33" data-faixa="B" data-n="33"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2022" data-counts="{&quot;C&quot;: 369, &quot;C+&quot;: 223, &quot;B&quot;: 52, &quot;B+&quot;: 0, &quot;A&quot;: 0}" aria-label="Ano-base 2022. C: 369, C+: 223, B: 52, B+: 0, A: 0."><span class="stack-year">2022</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:369" data-faixa="C" data-n="369"></span><span class="seg f-cp" style="flex-grow:223" data-faixa="C+" data-n="223"></span><span class="seg f-b" style="flex-grow:52" data-faixa="B" data-n="52"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2023" data-counts="{&quot;C&quot;: 343, &quot;C+&quot;: 223, &quot;B&quot;: 78, &quot;B+&quot;: 0, &quot;A&quot;: 0}" aria-label="Ano-base 2023. C: 343, C+: 223, B: 78, B+: 0, A: 0."><span class="stack-year">2023</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:343" data-faixa="C" data-n="343"></span><span class="seg f-cp" style="flex-grow:223" data-faixa="C+" data-n="223"></span><span class="seg f-b" style="flex-grow:78" data-faixa="B" data-n="78"></span></span></div><div class="stack-row" tabindex="0" role="img" data-ano="2024" data-counts="{&quot;C&quot;: 283, &quot;C+&quot;: 261, &quot;B&quot;: 97, &quot;B+&quot;: 3, &quot;A&quot;: 0}" aria-label="Ano-base 2024. C: 283, C+: 261, B: 97, B+: 3, A: 0."><span class="stack-year">2024</span><span class="stack-bar"><span class="seg f-c" style="flex-grow:283" data-faixa="C" data-n="283"><span class="seg-v">283</span></span><span class="seg f-cp" style="flex-grow:261" data-faixa="C+" data-n="261"><span class="seg-v">261</span></span><span class="seg f-b" style="flex-grow:97" data-faixa="B" data-n="97"><span class="seg-v">97</span></span><span class="seg f-bp" style="flex-grow:3" data-faixa="B+" data-n="3"></span></span></div><div class="stack-axis" aria-hidden="true"><span>0</span><span>161</span><span>322</span><span>483</span><span>644</span></div></div><details class="table-view"><summary>Ver os números em tabela</summary><div class="table-scroll"><table class="tbl num"><caption>Municípios por faixa do IEG-M e ano-base</caption><thead><tr><th scope="col">Ano-base</th><th scope="col">C</th><th scope="col">C+</th><th scope="col">B</th><th scope="col">B+</th><th scope="col">A</th><th scope="col">Total</th></tr></thead><tbody><tr><th scope="row">2014</th><td>10</td><td>30</td><td>406</td><td>198</td><td>0</td><td>644</td></tr><tr><th scope="row">2015</th><td>35</td><td>112</td><td>434</td><td>63</td><td>0</td><td>644</td></tr><tr><th scope="row">2016</th><td>75</td><td>100</td><td>385</td><td>84</td><td>0</td><td>644</td></tr><tr><th scope="row">2017</th><td>136</td><td>308</td><td>197</td><td>3</td><td>0</td><td>644</td></tr><tr><th scope="row">2018</th><td>94</td><td>264</td><td>275</td><td>11</td><td>0</td><td>644</td></tr><tr><th scope="row">2019</th><td>178</td><td>325</td><td>137</td><td>4</td><td>0</td><td>644</td></tr><tr><th scope="row">2020</th><td>304</td><td>250</td><td>89</td><td>1</td><td>0</td><td>644</td></tr><tr><th scope="row">2021</th><td>447</td><td>164</td><td>33</td><td>0</td><td>0</td><td>644</td></tr><tr><th scope="row">2022</th><td>369</td><td>223</td><td>52</td><td>0</td><td>0</td><td>644</td></tr><tr><th scope="row">2023</th><td>343</td><td>223</td><td>78</td><td>0</td><td>0</td><td>644</td></tr><tr><th scope="row">2024</th><td>283</td><td>261</td><td>97</td><td>3</td><td>0</td><td>644</td></tr></tbody></table></div></details><!-- /gerado:faixas-por-ano -->
+      <p class="chart-note">A matriz de pontuação muda a cada edição. A queda entre 2014 e 2021 mistura gestão e critérios mais exigentes, então comparar anos distantes pede cuidado.</p>
+    </figure>
+
+    <div class="grid-chart">
+      <figure class="chart" aria-labelledby="ch2-t" aria-describedby="ch2-d">
+        <figcaption>
+          <h3 id="ch2-t">Municípios em C por índice, ano-base 2024</h3>
+          <p id="ch2-d">Planejamento é o gargalo do estado: 533 de 644 municípios estão em C no <span class="nw">i-Plan</span>.</p>
+        </figcaption>
+        <!-- gerado:c-por-indice --><div class="hbar-chart" data-tooltip="simple"><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Plan, Planejamento" data-tip-value="533 de 644 em C (82,8%)" aria-label="i-Plan: 533 de 644 municípios em C"><span class="hbar-label"><b>i-Plan</b><small>Planejamento</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:82.76%"></span><span class="hbar-val" style="left:82.76%">533</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Amb, Meio ambiente" data-tip-value="415 de 644 em C (64,4%)" aria-label="i-Amb: 415 de 644 municípios em C"><span class="hbar-label"><b>i-Amb</b><small>Meio ambiente</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:64.44%"></span><span class="hbar-val" style="left:64.44%">415</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Cidade, Cidades protegidas" data-tip-value="413 de 644 em C (64,1%)" aria-label="i-Cidade: 413 de 644 municípios em C"><span class="hbar-label"><b>i-Cidade</b><small>Cidades protegidas</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:64.13%"></span><span class="hbar-val" style="left:64.13%">413</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Gov TI, Governança de TI" data-tip-value="320 de 644 em C (49,7%)" aria-label="i-Gov TI: 320 de 644 municípios em C"><span class="hbar-label"><b>i-Gov TI</b><small>Governança de TI</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:49.69%"></span><span class="hbar-val" style="left:49.69%">320</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Educ, Educação" data-tip-value="169 de 644 em C (26,2%)" aria-label="i-Educ: 169 de 644 municípios em C"><span class="hbar-label"><b>i-Educ</b><small>Educação</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:26.24%"></span><span class="hbar-val" style="left:26.24%">169</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Fiscal, Gestão fiscal" data-tip-value="122 de 644 em C (18,9%)" aria-label="i-Fiscal: 122 de 644 municípios em C"><span class="hbar-label"><b>i-Fiscal</b><small>Gestão fiscal</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:18.94%"></span><span class="hbar-val" style="left:18.94%">122</span></span></div><div class="hbar-row" tabindex="0" role="img" data-tip-title="i-Saúde, Saúde" data-tip-value="78 de 644 em C (12,1%)" aria-label="i-Saúde: 78 de 644 municípios em C"><span class="hbar-label"><b>i-Saúde</b><small>Saúde</small></span><span class="hbar-track"><span class="hbar-fill f-c" style="width:12.11%"></span><span class="hbar-val" style="left:12.11%">78</span></span></div><div class="hbar-axis" aria-hidden="true"><span>0</span><span>322</span><span>644 municípios</span></div></div><details class="table-view"><summary>Ver os números em tabela</summary><div class="table-scroll"><table class="tbl num"><caption>Municípios em C por índice, ano-base 2024</caption><thead><tr><th scope="col">Índice</th><th scope="col">Em C</th><th scope="col">Parcela de 644</th></tr></thead><tbody><tr><th scope="row">i-Plan</th><td>533</td><td>82,8%</td></tr><tr><th scope="row">i-Amb</th><td>415</td><td>64,4%</td></tr><tr><th scope="row">i-Cidade</th><td>413</td><td>64,1%</td></tr><tr><th scope="row">i-Gov TI</th><td>320</td><td>49,7%</td></tr><tr><th scope="row">i-Educ</th><td>169</td><td>26,2%</td></tr><tr><th scope="row">i-Fiscal</th><td>122</td><td>18,9%</td></tr><tr><th scope="row">i-Saúde</th><td>78</td><td>12,1%</td></tr></tbody></table></div></details><!-- /gerado:c-por-indice -->
+      </figure>
+
+      <figure class="chart chart-wide" aria-labelledby="ch3-t" aria-describedby="ch3-d">
+        <figcaption>
+          <h3 id="ch3-t">Média estadual por índice, 2014 a 2024</h3>
+          <p id="ch3-d">Média dos 644 municípios publicada pelo painel. O fundo mostra as faixas como referência; a média não tem faixa oficial. O último quadro é a média ponderada, calculada para esta página.</p>
+        </figcaption>
+        <!-- gerado:medias --><div class="sm-grid" data-tooltip="series"><figure class="sm"><figcaption><span class="sm-name">i-Plan</span><span class="sm-sub">Planejamento</span></figcaption><div class="sm-vals"><span><small>2014</small> 58,1%</span><span class="sm-last"><small>2024</small> 31,8%</span><span class="sm-delta">−26,3 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Plan, Planejamento: 58,1% em 2014 e 31,8% em 2024, faixa de referência C no último ano." data-series="[0.5815, 0.521, 0.4985, 0.3653, 0.3884, 0.4763, 0.4012, 0.2893, 0.2845, 0.316, 0.318]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Plan"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,45.506 10.000,54.148 20.000,57.360 30.000,76.386 40.000,73.088 50.000,60.532 60.000,71.256 70.000,87.238 80.000,87.930 90.000,83.432 100.000,83.146"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:83.15%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Fiscal</span><span class="sm-sub">Gestão fiscal</span></figcaption><div class="sm-vals"><span><small>2014</small> 73,3%</span><span class="sm-last"><small>2024</small> 60,8%</span><span class="sm-delta">−12,5 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Fiscal, Gestão fiscal: 73,3% em 2014 e 60,8% em 2024, faixa de referência B no último ano." data-series="[0.7327, 0.7204, 0.7151, 0.6372, 0.6472, 0.6475, 0.6196, 0.6403, 0.6353, 0.5687, 0.6081]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Fiscal"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,23.902 10.000,25.652 20.000,26.415 30.000,37.549 40.000,36.118 50.000,36.074 60.000,40.055 70.000,37.096 80.000,37.815 90.000,47.325 100.000,41.704"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:41.70%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Educ</span><span class="sm-sub">Educação</span></figcaption><div class="sm-vals"><span><small>2014</small> 83,4%</span><span class="sm-last"><small>2024</small> 57,0%</span><span class="sm-delta">−26,5 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Educ, Educação: 83,4% em 2014 e 57,0% em 2024, faixa de referência C+ no último ano." data-series="[0.8344, 0.7028, 0.6837, 0.577, 0.603, 0.5589, 0.5286, 0.4974, 0.5214, 0.5457, 0.5696]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Educ"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,9.374 10.000,28.165 20.000,30.896 30.000,46.147 40.000,42.429 50.000,48.733 60.000,53.057 70.000,57.513 80.000,54.086 90.000,50.610 100.000,47.198"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:47.20%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Saúde</span><span class="sm-sub">Saúde</span></figcaption><div class="sm-vals"><span><small>2014</small> 80,9%</span><span class="sm-last"><small>2024</small> 62,1%</span><span class="sm-delta">−18,8 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Saúde, Saúde: 80,9% em 2014 e 62,1% em 2024, faixa de referência B no último ano." data-series="[0.809, 0.7632, 0.7554, 0.6725, 0.6926, 0.6238, 0.5892, 0.5292, 0.5617, 0.6048, 0.6208]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Saúde"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,12.999 10.000,19.550 20.000,20.657 30.000,32.496 40.000,29.627 50.000,39.463 60.000,44.401 70.000,52.966 80.000,48.332 90.000,42.174 100.000,39.885"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:39.88%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Amb</span><span class="sm-sub">Meio ambiente</span></figcaption><div class="sm-vals"><span><small>2014</small> 67,1%</span><span class="sm-last"><small>2024</small> 38,9%</span><span class="sm-delta">−28,2 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Amb, Meio ambiente: 67,1% em 2014 e 38,9% em 2024, faixa de referência C no último ano." data-series="[0.6708, 0.6595, 0.6194, 0.6167, 0.632, 0.3597, 0.3592, 0.3304, 0.3816, 0.406, 0.3885]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Amb"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,32.742 10.000,34.352 20.000,40.084 30.000,40.468 40.000,38.279 50.000,77.187 60.000,77.263 70.000,81.378 80.000,74.051 90.000,70.577 100.000,73.066"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:73.07%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Cidade</span><span class="sm-sub">Cidades protegidas</span></figcaption><div class="sm-vals"><span><small>2014</small> 52,1%</span><span class="sm-last"><small>2024</small> 40,8%</span><span class="sm-delta">−11,4 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Cidade, Cidades protegidas: 52,1% em 2014 e 40,8% em 2024, faixa de referência C no último ano." data-series="[0.5211, 0.4694, 0.476, 0.4939, 0.5014, 0.3751, 0.3377, 0.3516, 0.3998, 0.4023, 0.4076]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Cidade"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,54.122 10.000,61.515 20.000,60.577 30.000,58.021 40.000,56.941 50.000,74.991 60.000,80.322 70.000,78.343 80.000,71.453 90.000,71.102 100.000,70.337"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:70.34%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm"><figcaption><span class="sm-name">i-Gov TI</span><span class="sm-sub">Governança de TI</span></figcaption><div class="sm-vals"><span><small>2014</small> 57,7%</span><span class="sm-last"><small>2024</small> 51,8%</span><span class="sm-delta">−5,9 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="i-Gov TI, Governança de TI: 57,7% em 2014 e 51,8% em 2024, faixa de referência C+ no último ano." data-series="[0.5774, 0.5182, 0.549, 0.5368, 0.5488, 0.4552, 0.4244, 0.4217, 0.4731, 0.4959, 0.5181]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="i-Gov TI"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,46.083 10.000,54.536 20.000,50.146 30.000,51.892 40.000,50.173 50.000,63.543 60.000,67.948 70.000,68.327 80.000,60.989 90.000,57.731 100.000,54.563"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:54.56%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure><figure class="sm sm-hl"><figcaption><span class="sm-name">IEG-M</span><span class="sm-sub">média ponderada pelos pesos</span></figcaption><div class="sm-vals"><span><small>2014</small> 71,4%</span><span class="sm-last"><small>2024</small> 50,8%</span><span class="sm-delta">−20,5 p.p.</span></div><div class="sm-plot" tabindex="0" role="img" aria-label="IEG-M, média ponderada pelos pesos: 71,4% em 2014 e 50,8% em 2024, faixa de referência C+ no último ano." data-series="[0.7135, 0.6568, 0.6437, 0.5636, 0.5819, 0.5388, 0.5017, 0.463, 0.4824, 0.4925, 0.5084]" data-years="[&quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2019&quot;, &quot;2020&quot;, &quot;2021&quot;, &quot;2022&quot;, &quot;2023&quot;, &quot;2024&quot;]" data-name="IEG-M"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="band f-c" x="0" y="57.143" width="100" height="42.857"/><rect class="band f-cp" x="0" y="42.857" width="100" height="14.286"/><rect class="band f-b" x="0" y="21.429" width="100" height="21.429"/><rect class="band f-bp" x="0" y="0.000" width="100" height="21.429"/><polyline class="sm-line" points="0.000,26.641 10.000,34.741 20.000,36.610 30.000,48.058 40.000,45.436 50.000,51.606 60.000,56.894 70.000,62.434 80.000,59.660 90.000,58.207 100.000,55.938"/></svg><span class="sm-band" style="top:78.57%">C</span><span class="sm-band" style="top:50.00%">C+</span><span class="sm-band" style="top:32.14%">B</span><span class="sm-band" style="top:10.71%">B+</span><span class="sm-tick" style="top:57.14%">50</span><span class="sm-tick" style="top:42.86%">60</span><span class="sm-tick" style="top:21.43%">75</span><span class="sm-dot" style="left:100%;top:55.94%"></span><span class="sm-cross" hidden></span></div><div class="sm-x" aria-hidden="true"><span>2014</span><span>2024</span></div></figure></div><details class="table-view"><summary>Ver os números em tabela</summary><div class="table-scroll"><table class="tbl num"><caption>Média estadual por índice (0 a 1) e média ponderada do IEG-M</caption><thead><tr><th scope="col">Ano-base</th><th scope="col">i-Plan</th><th scope="col">i-Fiscal</th><th scope="col">i-Educ</th><th scope="col">i-Saúde</th><th scope="col">i-Amb</th><th scope="col">i-Cidade</th><th scope="col">i-Gov TI</th><th scope="col">IEG-M ponderado</th></tr></thead><tbody><tr><th scope="row">2014</th><td>0,581</td><td>0,733</td><td>0,834</td><td>0,809</td><td>0,671</td><td>0,521</td><td>0,577</td><td>0,714</td></tr><tr><th scope="row">2015</th><td>0,521</td><td>0,720</td><td>0,703</td><td>0,763</td><td>0,660</td><td>0,469</td><td>0,518</td><td>0,657</td></tr><tr><th scope="row">2016</th><td>0,498</td><td>0,715</td><td>0,684</td><td>0,755</td><td>0,619</td><td>0,476</td><td>0,549</td><td>0,644</td></tr><tr><th scope="row">2017</th><td>0,365</td><td>0,637</td><td>0,577</td><td>0,673</td><td>0,617</td><td>0,494</td><td>0,537</td><td>0,564</td></tr><tr><th scope="row">2018</th><td>0,388</td><td>0,647</td><td>0,603</td><td>0,693</td><td>0,632</td><td>0,501</td><td>0,549</td><td>0,582</td></tr><tr><th scope="row">2019</th><td>0,476</td><td>0,647</td><td>0,559</td><td>0,624</td><td>0,360</td><td>0,375</td><td>0,455</td><td>0,539</td></tr><tr><th scope="row">2020</th><td>0,401</td><td>0,620</td><td>0,529</td><td>0,589</td><td>0,359</td><td>0,338</td><td>0,424</td><td>0,502</td></tr><tr><th scope="row">2021</th><td>0,289</td><td>0,640</td><td>0,497</td><td>0,529</td><td>0,330</td><td>0,352</td><td>0,422</td><td>0,463</td></tr><tr><th scope="row">2022</th><td>0,284</td><td>0,635</td><td>0,521</td><td>0,562</td><td>0,382</td><td>0,400</td><td>0,473</td><td>0,482</td></tr><tr><th scope="row">2023</th><td>0,316</td><td>0,569</td><td>0,546</td><td>0,605</td><td>0,406</td><td>0,402</td><td>0,496</td><td>0,493</td></tr><tr><th scope="row">2024</th><td>0,318</td><td>0,608</td><td>0,570</td><td>0,621</td><td>0,389</td><td>0,408</td><td>0,518</td><td>0,508</td></tr></tbody></table></div></details><!-- /gerado:medias -->
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PONTOS NA MESA -->
+<section class="sec" id="pontos" aria-labelledby="pontos-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Diagnóstico do estado</p>
+      <h2 id="pontos-t">Onde os pontos ficam na mesa</h2>
+      <p class="sec-lead">Itens que muitos municípios perdem e que dependem mais de prazo, de um documento aprovado ou da escolha de um sistema do que de obra ou orçamento.</p>
+    </header>
+
+    <p class="ressalva"><strong>Ressalva.</strong> O quadro cruza as respostas do ano-base 2024 com a matriz da edição 2026. São edições diferentes, e o valor de um item pode ter mudado entre elas.</p>
+
+    <!-- gerado:mesa --><div class="table-scroll"><table class="tbl mesa"><caption>Itens com mais municípios sem pontuação, ordenados pelo peso no IEG-M</caption><thead><tr><th scope="col">Índice</th><th scope="col">Item</th><th scope="col">Vale</th><th scope="col">Municípios sem os pontos</th><th scope="col">No IEG-M</th><th scope="col">Correção</th></tr></thead><tbody><tr><td data-label="Índice"><span class="code">i-Plan</span></td><th scope="row" data-label="Item">Pontualidade na entrega das peças de planejamento</th><td data-label="Vale" class="n">150 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:80.9%"></span></span><span><b>521</b> de 644 entregaram fora do prazo</span></td><td data-label="No IEG-M" class="n">3,0 p.p.</td><td data-label="Correção"><span class="tipo t-processo">Processo</span></td></tr><tr><td data-label="Índice"><span class="code">i-Cidade</span></td><th scope="row" data-label="Item">Mapeamento das principais ameaças do território</th><td data-label="Vale" class="n">200 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:38.5%"></span></span><span><b>248</b> de 644 responderam Não</span></td><td data-label="No IEG-M" class="n">1,0 p.p.</td><td data-label="Correção"><span class="tipo t-investimento">Investimento</span></td></tr><tr><td data-label="Índice"><span class="code">i-Saúde</span></td><th scope="row" data-label="Item">Controle do estoque de medicamentos no sistema Hórus</th><td data-label="Vale" class="n">40 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:72.8%"></span></span><span><b>469</b> de 644 usam sistema próprio e ganham zero</span></td><td data-label="No IEG-M" class="n">0,8 p.p.</td><td data-label="Correção"><span class="tipo t-processo">Processo</span></td></tr><tr><td data-label="Índice"><span class="code">i-Cidade</span></td><th scope="row" data-label="Item">Estudo da estrutura de escolas e UBS para abrigar a população em desastres</th><td data-label="Vale" class="n">100 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:55.1%"></span></span><span><b>355</b> de 644 ficaram na pior opção</span></td><td data-label="No IEG-M" class="n">0,5 p.p.</td><td data-label="Correção"><span class="tipo t-investimento">Investimento</span></td></tr><tr><td data-label="Índice"><span class="code">i-Gov TI</span></td><th scope="row" data-label="Item">Política de segurança da informação formalmente instituída</th><td data-label="Vale" class="n">50 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:55.1%"></span></span><span><b>355</b> de 644 não têm</span></td><td data-label="No IEG-M" class="n">0,25 p.p.</td><td data-label="Correção"><span class="tipo t-norma">Norma</span></td></tr><tr><td data-label="Índice"><span class="code">i-Cidade</span></td><th scope="row" data-label="Item">PLANCON, plano de contingência de Defesa Civil</th><td data-label="Vale" class="n">50 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:40.7%"></span></span><span><b>262</b> de 644 não têm</span></td><td data-label="No IEG-M" class="n">0,25 p.p.</td><td data-label="Correção"><span class="tipo t-norma">Norma</span></td></tr><tr><td data-label="Índice"><span class="code">i-Gov TI</span></td><th scope="row" data-label="Item">PDTIC, plano diretor de tecnologia da informação, vigente</th><td data-label="Vale" class="n">40 pontos</td><td data-label="Municípios sem os pontos" class="mesa-n"><span class="mini" aria-hidden="true"><span style="width:63.4%"></span></span><span><b>408</b> de 644 não possuem</span></td><td data-label="No IEG-M" class="n">0,2 p.p.</td><td data-label="Correção"><span class="tipo t-norma">Norma</span></td></tr></tbody></table></div><!-- /gerado:mesa -->
+
+    <div class="legend-tipos">
+      <p><span class="tipo t-norma">Norma</span> aprovar um plano, decreto, lei ou portaria.</p>
+      <p><span class="tipo t-processo">Processo</span> cumprir prazo, protocolar, trocar de sistema.</p>
+      <p><span class="tipo t-investimento">Investimento</span> contratar estudo, serviço ou estrutura.</p>
+    </div>
+    <p class="note">"No IEG-M" converte os pontos do item em pontos percentuais (p.p.) da nota geral: pontos divididos por 1000, vezes o peso do índice. É uma conta aproximada, sem rebaixamentos. A classificação do tipo de correção é uma proposta para discussão.</p>
+  </div>
+</section>
+
+<!-- PRODUTO -->
+<section class="sec sec-alt" id="produto" aria-labelledby="produto-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">A proposta</p>
+      <h2 id="produto-t">O produto em três camadas</h2>
+      <p class="sec-lead">Cada camada funciona sozinha e alimenta a seguinte. As telas abaixo são simulações para discutir a ideia, não um sistema pronto.</p>
+    </header>
+
+    <article class="layer" aria-labelledby="l1-t">
+      <div class="layer-text">
+        <p class="layer-n">Camada 1</p>
+        <h3 id="l1-t">Motor de cálculo aberto</h3>
+        <p>Lê a matriz oficial e as fórmulas do manual, calcula os sete índices, aplica os rebaixamentos e chega à faixa. Cada edição tem a própria versão das regras, porque a matriz muda todo ano.</p>
+        <p>O cálculo é validado contra as faixas oficiais de 644 municípios em 11 anos-base, 7.084 faixas no total, e a taxa de acerto é publicada junto. O primeiro índice é o <span class="nw">i-Gov TI</span>, que não tem itens calculados pelo Tribunal.</p>
+      </div>
+      <div class="tela" role="group" aria-label="Tela simulada do motor de cálculo">
+        <div class="tela-bar"><span class="tela-title">Motor de cálculo · edição 2026</span><span class="tela-tag">Tela simulada</span></div>
+        <div class="tela-body mA">
+          <div class="mA-rule">
+            <p class="k">Regra lida da matriz oficial</p>
+            <dl class="kv">
+              <div><dt>Edição</dt><dd>IEG-M 2026, ano-base 2025</dd></div>
+              <div><dt>Item</dt><dd><span class="code">i-Gov TI</span> 2.0</dd></div>
+              <div><dt>Pergunta</dt><dd>A prefeitura possui PDTIC vigente, com diretrizes e metas?</dd></div>
+            </dl>
+            <table class="opts">
+              <caption class="sr">Opções de resposta e pontos</caption>
+              <tbody>
+                <tr><td>SIM, com metas acima de 02 anos</td><td>40</td></tr>
+                <tr><td>SIM, com metas para até 02 anos</td><td>30</td></tr>
+                <tr><td>NÃO POSSUI PDTIC</td><td>0</td></tr>
+              </tbody>
+            </table>
+            <p class="mini-note">Pontuação máxima 40. Sem critério de rebaixamento.</p>
+          </div>
+          <div class="mA-val">
+            <p class="k">Validação contra as faixas oficiais</p>
+            <p class="mA-big">7.084 <small>faixas de referência</small></p>
+            <p class="mini-note">644 municípios × 11 anos-base</p>
+            <ul class="queue">
+              <li class="is-now"><span class="code">i-Gov TI</span><span>em validação</span></li>
+              <li><span class="code">i-Cidade</span><span>na fila</span></li>
+              <li><span class="code">i-Educ</span><span>na fila</span></li>
+              <li><span class="code">i-Saúde</span><span>na fila</span></li>
+              <li><span class="code">i-Amb</span><span>na fila</span></li>
+              <li><span class="code">i-Plan</span><span>na fila</span></li>
+              <li><span class="code">i-Fiscal</span><span>na fila</span></li>
+            </ul>
+            <p class="mini-note">Taxa de acerto: publicada por índice e por ano-base quando medida.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="layer" aria-labelledby="l2-t">
+      <div class="layer-text">
+        <p class="layer-n">Camada 2</p>
+        <h3 id="l2-t">Diagnóstico de pontos na mesa</h3>
+        <p>A partir de dado público, lista os itens em que o município perdeu pontos e classifica cada correção como <span class="tipo t-norma">Norma</span> <span class="tipo t-processo">Processo</span> ou <span class="tipo t-investimento">Investimento</span>.</p>
+        <p>A simulação do tipo "e se" mostra quanto a nota e a faixa podem mudar com cada correção. Na tela ao lado, mova a nota atual e marque ou desmarque itens.</p>
+      </div>
+      <div class="tela" role="group" aria-label="Tela simulada do diagnóstico, com simulação interativa">
+        <div class="tela-bar"><span class="tela-title">Diagnóstico · município hipotético</span><span class="tela-tag">Tela simulada</span></div>
+        <div class="tela-body sim" data-sim="nota">
+          <p class="mini-note">Cenário ilustrativo: um município que perdeu os sete itens do quadro de pontos na mesa. A nota atual é informada por quem usa.</p>
+          <div class="sim-input">
+            <label for="nota-atual">Nota atual do IEG-M</label>
+            <input type="range" id="nota-atual" min="40" max="80" step="0.5" value="55">
+            <output for="nota-atual" id="nota-atual-out">55,0%</output>
+          </div>
+          <!-- gerado:diag-mock --><ul class="checklist"><li><label class="ck" for="diag-0"><input type="checkbox" id="diag-0" checked data-pp="3.0000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Pontualidade na entrega das peças de planejamento</span><span class="ck-tags"><span class="code">i-Plan</span><span class="tipo t-processo">Processo</span><span class="ck-pts">150 pontos</span></span></span><span class="ck-pp">+3,0<small> p.p.</small></span></label></li><li><label class="ck" for="diag-1"><input type="checkbox" id="diag-1" checked data-pp="1.0000" data-tipo="investimento"><span class="ck-body"><span class="ck-title">Mapeamento das principais ameaças do território</span><span class="ck-tags"><span class="code">i-Cidade</span><span class="tipo t-investimento">Investimento</span><span class="ck-pts">200 pontos</span></span></span><span class="ck-pp">+1,0<small> p.p.</small></span></label></li><li><label class="ck" for="diag-2"><input type="checkbox" id="diag-2" checked data-pp="0.8000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Controle do estoque de medicamentos no sistema Hórus</span><span class="ck-tags"><span class="code">i-Saúde</span><span class="tipo t-processo">Processo</span><span class="ck-pts">40 pontos</span></span></span><span class="ck-pp">+0,8<small> p.p.</small></span></label></li><li><label class="ck" for="diag-3"><input type="checkbox" id="diag-3" checked data-pp="0.5000" data-tipo="investimento"><span class="ck-body"><span class="ck-title">Estudo da estrutura de escolas e UBS para abrigar a população em desastres</span><span class="ck-tags"><span class="code">i-Cidade</span><span class="tipo t-investimento">Investimento</span><span class="ck-pts">100 pontos</span></span></span><span class="ck-pp">+0,5<small> p.p.</small></span></label></li><li><label class="ck" for="diag-4"><input type="checkbox" id="diag-4" checked data-pp="0.2500" data-tipo="norma"><span class="ck-body"><span class="ck-title">Política de segurança da informação formalmente instituída</span><span class="ck-tags"><span class="code">i-Gov TI</span><span class="tipo t-norma">Norma</span><span class="ck-pts">50 pontos</span></span></span><span class="ck-pp">+0,25<small> p.p.</small></span></label></li><li><label class="ck" for="diag-5"><input type="checkbox" id="diag-5" checked data-pp="0.2500" data-tipo="norma"><span class="ck-body"><span class="ck-title">PLANCON, plano de contingência de Defesa Civil</span><span class="ck-tags"><span class="code">i-Cidade</span><span class="tipo t-norma">Norma</span><span class="ck-pts">50 pontos</span></span></span><span class="ck-pp">+0,25<small> p.p.</small></span></label></li><li><label class="ck" for="diag-6"><input type="checkbox" id="diag-6" checked data-pp="0.2000" data-tipo="norma"><span class="ck-body"><span class="ck-title">PDTIC, plano diretor de tecnologia da informação, vigente</span><span class="ck-tags"><span class="code">i-Gov TI</span><span class="tipo t-norma">Norma</span><span class="ck-pts">40 pontos</span></span></span><span class="ck-pp">+0,2<small> p.p.</small></span></label></li></ul><!-- /gerado:diag-mock -->
+          <div class="sim-out" aria-live="polite">
+            <div class="sim-nums">
+              <p><span class="sn-l">Recuperável</span><span class="sn-v" data-out="total">+6,0 p.p.</span></p>
+              <p><span class="sn-l">Nota simulada</span><span class="sn-v" data-out="nova">61,0%</span></p>
+              <p><span class="sn-l">Faixa</span><span class="sn-v" data-out="faixas">C+ para B</span></p>
+            </div>
+            <div class="regua regua-sim" aria-hidden="true">
+              <span class="rg f-c" style="--a:40;--b:50">C</span>
+              <span class="rg f-cp" style="--a:50;--b:60">C+</span>
+              <span class="rg f-b" style="--a:60;--b:75">B</span>
+              <span class="rg f-bp" style="--a:75;--b:90">B+</span>
+              <span class="pin pin-now" data-pin="atual" style="--p:55"></span>
+              <span class="pin pin-new" data-pin="nova" style="--p:61"></span>
+            </div>
+            <p class="sim-tipos" data-out="tipos">Norma +0,7 · Processo +3,8 · Investimento +1,5</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="layer" aria-labelledby="l3-t">
+      <div class="layer-text">
+        <p class="layer-n">Camada 3</p>
+        <h3 id="l3-t">Evidência para a validação</h3>
+        <p>Para cada resposta Sim, indica o documento que a comprova e onde ele está. Resposta sem comprovação é a que a fiscalização altera ou invalida.</p>
+        <p>É a parte jurídica do serviço: conferir se o documento existe, se está vigente e se diz o que a resposta afirma, antes do envio.</p>
+      </div>
+      <div class="tela" role="group" aria-label="Tela simulada da camada de evidência">
+        <div class="tela-bar"><span class="tela-title">Evidências · questionário em preenchimento</span><span class="tela-tag">Tela simulada</span></div>
+        <div class="tela-body">
+          <div class="table-scroll">
+            <table class="tbl ev">
+              <caption class="sr">Respostas Sim e documentos que as comprovam</caption>
+              <thead><tr><th scope="col">Item</th><th scope="col">Resposta</th><th scope="col">Documento que comprova</th><th scope="col">Situação</th></tr></thead>
+              <tbody>
+                <tr><td><span class="code">i-Gov TI</span> PDTIC</td><td>Sim, metas acima de 2 anos</td><td>PDTIC aprovado e ato que fixa a vigência</td><td><span class="st st-ok">Anexado</span></td></tr>
+                <tr><td><span class="code">i-Gov TI</span> Política de segurança</td><td>Sim</td><td>Ato normativo que institui a política</td><td><span class="st st-pend">Pendente</span></td></tr>
+                <tr><td><span class="code">i-Cidade</span> PLANCON</td><td>Sim</td><td>Plano de contingência aprovado</td><td><span class="st st-ok">Anexado</span></td></tr>
+                <tr><td><span class="code">i-Cidade</span> Mapeamento de ameaças</td><td>Sim</td><td>Relatório do mapeamento com a classificação de riscos</td><td><span class="st st-rev">Em revisão</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mini-note">2 de 4 respostas Sim com documento anexado. Os documentos listados são exemplos, não exigência do Tribunal.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- EXEMPLO -->
+<section class="sec" id="exemplo" aria-labelledby="exemplo-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow-tag">Exemplo com dados públicos do TCESP, ano-base 2024</p>
+      <h2 id="exemplo-t">Como o diagnóstico leria Suzano</h2>
+      <p class="sec-lead">Suzano voltou à faixa B no ano-base 2024, depois de sete anos seguidos em C+ ou C. O exemplo usa só dados publicados pelo Tribunal e não faz juízo sobre a gestão do município.</p>
+    </header>
+
+    <div class="grid-2 grid-ex">
+      <div class="card">
+        <h3>Faixa do IEG-M, 2014 a 2024</h3>
+        <!-- gerado:suzano-historico --><ol class="strip" aria-label="Faixa do IEG-M de Suzano por ano-base, 2014 a 2024"><li class="strip-cell f-b"><span class="strip-year">2014</span><span class="strip-fx">B</span></li><li class="strip-cell f-b"><span class="strip-year">2015</span><span class="strip-fx">B</span></li><li class="strip-cell f-b"><span class="strip-year">2016</span><span class="strip-fx">B</span></li><li class="strip-cell f-cp"><span class="strip-year">2017</span><span class="strip-fx">C+</span></li><li class="strip-cell f-cp"><span class="strip-year">2018</span><span class="strip-fx">C+</span></li><li class="strip-cell f-cp"><span class="strip-year">2019</span><span class="strip-fx">C+</span></li><li class="strip-cell f-c"><span class="strip-year">2020</span><span class="strip-fx">C</span></li><li class="strip-cell f-cp"><span class="strip-year">2021</span><span class="strip-fx">C+</span></li><li class="strip-cell f-cp"><span class="strip-year">2022</span><span class="strip-fx">C+</span></li><li class="strip-cell f-cp"><span class="strip-year">2023</span><span class="strip-fx">C+</span></li><li class="strip-cell f-b is-now"><span class="strip-year">2024</span><span class="strip-fx">B</span></li></ol><!-- /gerado:suzano-historico -->
+        <p class="note">B de 2014 a 2016, C+ de 2017 a 2019, C em 2020, C+ de 2021 a 2023 e B em 2024.</p>
+      </div>
+      <div class="card">
+        <h3>Faixa por índice, ano-base 2024</h3>
+        <!-- gerado:suzano-indices --><ul class="idx-list" aria-label="Faixas de Suzano por índice, ano-base 2024"><li><span class="idx-code">i-Plan</span><span class="idx-name">Planejamento</span><span class="fx f-b">B</span></li><li><span class="idx-code">i-Fiscal</span><span class="idx-name">Gestão fiscal</span><span class="fx f-b">B</span></li><li><span class="idx-code">i-Educ</span><span class="idx-name">Educação</span><span class="fx f-cp">C+</span></li><li><span class="idx-code">i-Saúde</span><span class="idx-name">Saúde</span><span class="fx f-b">B</span></li><li><span class="idx-code">i-Amb</span><span class="idx-name">Meio ambiente</span><span class="fx f-cp">C+</span></li><li><span class="idx-code">i-Cidade</span><span class="idx-name">Cidades protegidas</span><span class="fx f-bp">B+</span></li><li><span class="idx-code">i-Gov TI</span><span class="idx-name">Governança de TI</span><span class="fx f-bp">B+</span></li></ul><!-- /gerado:suzano-indices -->
+      </div>
+    </div>
+
+    <div class="card diag" aria-labelledby="diag-t">
+      <div class="diag-head">
+        <h3 id="diag-t">Perdas objetivas nas respostas de 2024</h3>
+        <p>Itens em que a resposta publicada deixou pontos para trás. Marque ou desmarque para ver o efeito.</p>
+      </div>
+      <div class="sim sim-ex" data-sim="intervalo">
+        <!-- gerado:suzano-perdas --><ul class="checklist"><li><label class="ck" for="suz-0"><input type="checkbox" id="suz-0" checked data-pp="3.0000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Peças de planejamento entregues fora do prazo</span><span class="ck-tags"><span class="code">i-Plan</span><span class="tipo t-processo">Processo</span><span class="ck-pts">150 pontos</span></span></span><span class="ck-pp">+3,0<small> p.p.</small></span></label></li><li><label class="ck" for="suz-1"><input type="checkbox" id="suz-1" checked data-pp="1.0000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Sem pesquisa de demanda por vaga em creche</span><span class="ck-tags"><span class="code">i-Educ</span><span class="tipo t-processo">Processo</span><span class="ck-pts">50 pontos</span></span></span><span class="ck-pp">+1,0<small> p.p.</small></span></label></li><li><label class="ck" for="suz-2"><input type="checkbox" id="suz-2" checked data-pp="1.0000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Sem pesquisa de demanda por vaga na pré-escola</span><span class="ck-tags"><span class="code">i-Educ</span><span class="tipo t-processo">Processo</span><span class="ck-pts">50 pontos</span></span></span><span class="ck-pp">+1,0<small> p.p.</small></span></label></li><li><label class="ck" for="suz-3"><input type="checkbox" id="suz-3" checked data-pp="0.4000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Sem pesquisa de demanda por vaga nos anos iniciais</span><span class="ck-tags"><span class="code">i-Educ</span><span class="tipo t-processo">Processo</span><span class="ck-pts">20 pontos</span></span></span><span class="ck-pp">+0,4<small> p.p.</small></span></label></li><li><label class="ck" for="suz-4"><input type="checkbox" id="suz-4" checked data-pp="0.9000" data-tipo="investimento"><span class="ck-body"><span class="ck-title">Coleta seletiva</span><span class="ck-tags"><span class="code">i-Amb</span><span class="tipo t-investimento">Investimento</span><span class="ck-pts">90 de 100 pontos</span></span></span><span class="ck-pp">+0,9<small> p.p.</small></span></label></li><li><label class="ck" for="suz-5"><input type="checkbox" id="suz-5" checked data-pp="0.8000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Estoque de medicamentos controlado fora do Hórus</span><span class="ck-tags"><span class="code">i-Saúde</span><span class="tipo t-processo">Processo</span><span class="ck-pts">40 pontos</span></span></span><span class="ck-pp">+0,8<small> p.p.</small></span></label></li><li><label class="ck" for="suz-6"><input type="checkbox" id="suz-6" checked data-pp="0.5000" data-tipo="processo"><span class="ck-body"><span class="ck-title">Balancetes rejeitados</span><span class="ck-tags"><span class="code">i-Fiscal</span><span class="tipo t-processo">Processo</span><span class="ck-pts">25 pontos</span></span></span><span class="ck-pp">+0,5<small> p.p.</small></span></label></li><li><label class="ck" for="suz-7"><input type="checkbox" id="suz-7" checked data-pp="0.4000" data-tipo="investimento"><span class="ck-body"><span class="ck-title">Metas do plano de resíduos</span><span class="ck-tags"><span class="code">i-Amb</span><span class="tipo t-investimento">Investimento</span><span class="ck-pts">40 de 50 pontos</span></span></span><span class="ck-pp">+0,4<small> p.p.</small></span></label></li></ul><!-- /gerado:suzano-perdas -->
+        <div class="sim-out" aria-live="polite">
+          <p class="sim-big"><span data-out="total">+8,0</span> <small>p.p. do IEG-M</small></p>
+          <div class="regua regua-int" aria-hidden="true">
+            <span class="rg f-cp" style="--a:50;--b:60">C+</span>
+            <span class="rg f-b" style="--a:60;--b:75">B</span>
+            <span class="rg f-bp" style="--a:75;--b:90">B+</span>
+            <span class="span-up" data-span="sobe" style="--a:67;--b:75"></span>
+          </div>
+          <div class="regua-scale regua-scale-int" aria-hidden="true"><span style="--p:0">50</span><span style="--p:25">60</span><span style="--p:62.5">75</span><span style="--p:100">90%</span></div>
+          <p data-out="frase">Se a nota atual estiver em 67% ou mais, recuperar esses pontos leva a faixa a B+. Abaixo disso, continua em B.</p>
+          <p class="mini-note">A nota numérica de Suzano não é pública, só a faixa B (de 60% a 74,99%). Por isso o diagnóstico trabalha com intervalo, não com promessa.</p>
+        </div>
+      </div>
+      <p class="note">Valores de item podem mudar entre edições, com a mesma ressalva do quadro de pontos na mesa. A conversão para p.p. é aproximada e não considera rebaixamentos.</p>
+    </div>
+
+    <figure class="chart" aria-labelledby="ch4-t" aria-describedby="ch4-d">
+      <figcaption>
+        <h3 id="ch4-t">Suzano e vizinhos do Alto Tietê, ano-base 2024</h3>
+        <p id="ch4-d">Comparação de faixas oficiais, não de notas. Ordem alfabética.</p>
+      </figcaption>
+      <!-- gerado:alto-tiete --><div class="table-scroll"><table class="tbl heat"><caption class="sr">Faixas oficiais do ano-base 2024, em ordem alfabética</caption><thead><tr><th scope="col">Município</th><th scope="col">IEG-M</th><th scope="col" title="Planejamento">i-Plan</th><th scope="col" title="Gestão fiscal">i-Fiscal</th><th scope="col" title="Educação">i-Educ</th><th scope="col" title="Saúde">i-Saúde</th><th scope="col" title="Meio ambiente">i-Amb</th><th scope="col" title="Cidades protegidas">i-Cidade</th><th scope="col" title="Governança de TI">i-Gov TI</th></tr></thead><tbody><tr><th scope="row">Arujá</th><td class="hm hm-geral f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-cp">C+</td><td class="hm f-cp">C+</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td><td class="hm f-bp">B+</td><td class="hm f-bp">B+</td></tr><tr><th scope="row">Biritiba-Mirim</th><td class="hm hm-geral f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td></tr><tr><th scope="row">Ferraz de Vasconcelos</th><td class="hm hm-geral f-b">B</td><td class="hm f-c">C</td><td class="hm f-b">B</td><td class="hm f-bp">B+</td><td class="hm f-b">B</td><td class="hm f-b">B</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td></tr><tr><th scope="row">Guararema</th><td class="hm hm-geral f-b">B</td><td class="hm f-c">C</td><td class="hm f-b">B</td><td class="hm f-bp">B+</td><td class="hm f-bp">B+</td><td class="hm f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-c">C</td></tr><tr><th scope="row">Itaquaquecetuba</th><td class="hm hm-geral f-c">C</td><td class="hm f-c">C</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-bp">B+</td><td class="hm f-c">C</td></tr><tr><th scope="row">Mogi das Cruzes</th><td class="hm hm-geral f-c">C</td><td class="hm f-c">C</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td><td class="hm f-cp">C+</td><td class="hm f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-bp">B+</td></tr><tr><th scope="row">Salesópolis</th><td class="hm hm-geral f-c">C</td><td class="hm f-c">C</td><td class="hm f-b">B</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-cp">C+</td></tr><tr><th scope="row">Santa Isabel</th><td class="hm hm-geral f-c">C</td><td class="hm f-c">C</td><td class="hm f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-cp">C+</td><td class="hm f-c">C</td><td class="hm f-c">C</td><td class="hm f-c">C</td></tr><tr class="is-ex"><th scope="row">Suzano <span class="ex-tag">exemplo</span></th><td class="hm hm-geral f-b">B</td><td class="hm f-b">B</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td><td class="hm f-b">B</td><td class="hm f-cp">C+</td><td class="hm f-bp">B+</td><td class="hm f-bp">B+</td></tr></tbody></table></div><!-- /gerado:alto-tiete -->
+      <div class="legend-inline">
+        <ul class="legend" aria-label="Legenda das faixas"><li><span class="sw f-c" aria-hidden="true"></span>C</li><li><span class="sw f-cp" aria-hidden="true"></span>C+</li><li><span class="sw f-b" aria-hidden="true"></span>B</li><li><span class="sw f-bp" aria-hidden="true"></span>B+</li><li><span class="sw f-a" aria-hidden="true"></span>A</li></ul>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ARQUITETURA -->
+<section class="sec sec-alt" id="arquitetura" aria-labelledby="arq-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Como funciona por dentro</p>
+      <h2 id="arq-t">Arquitetura</h2>
+      <p class="sec-lead">Tudo começa em fontes públicas do TCESP e nos dados que o próprio município já entrega ao Tribunal. As faixas oficiais servem de gabarito para validar o motor.</p>
+    </header>
+    <figure class="diagram-box">
+      <!-- gerado:arquitetura --><svg class="diagram dg-h-wide" viewBox="0 0 1040 400" role="img" aria-labelledby="dg-h-wide-t dg-h-wide-d" xmlns="http://www.w3.org/2000/svg"><title id="dg-h-wide-t">Arquitetura da proposta</title><desc id="dg-h-wide-d">Fontes públicas do TCESP (matriz oficial, manual da edição, CSV de respostas e faixas oficiais) e dados do próprio município (AUDESP e balancetes) entram na ingestão, versionada por edição. A ingestão alimenta o motor de cálculo, validado contra as faixas oficiais de 644 municípios em 11 anos-base. O motor alimenta o diagnóstico, que gera o relatório e a lista de evidências. O AUDESP permite preenchimento prévio dos itens calculados: 850 de 1000 pontos no i-Fiscal e 650 de 1000 no i-Plan.</desc><text class="dg-h" x="16" y="24" text-anchor="start"><tspan x="16" dy="0">DADOS DO PRÓPRIO MUNICÍPIO</tspan></text><rect class="dg-own" x="16" y="36" width="210" height="56" rx="6"/><text class="dg-t" x="28" y="58" text-anchor="start"><tspan x="28" dy="0">AUDESP e balancetes</tspan></text><text class="dg-s" x="28" y="77" text-anchor="start"><tspan x="28" dy="0">entregas do próprio município</tspan></text><text class="dg-s" x="372" y="48" text-anchor="start"><tspan x="372" dy="0">Preenchimento prévio de itens calculados:</tspan><tspan x="372" dy="17">i-Fiscal, 850 de 1000 pontos;</tspan><tspan x="372" dy="17">i-Plan, 650 de 1000 pontos.</tspan></text><text class="dg-h" x="16" y="124" text-anchor="start"><tspan x="16" dy="0">FONTES PÚBLICAS DO TCESP</tspan></text><rect class="dg-box" x="16" y="136" width="210" height="52" rx="6"/><text class="dg-t" x="28" y="158" text-anchor="start"><tspan x="28" dy="0">Matriz oficial</tspan></text><text class="dg-s" x="28" y="177" text-anchor="start"><tspan x="28" dy="0">planilha de instrução</tspan></text><rect class="dg-box" x="16" y="200" width="210" height="52" rx="6"/><text class="dg-t" x="28" y="222" text-anchor="start"><tspan x="28" dy="0">Manual da edição</tspan></text><text class="dg-s" x="28" y="241" text-anchor="start"><tspan x="28" dy="0">fórmulas e regras</tspan></text><rect class="dg-box" x="16" y="264" width="210" height="52" rx="6"/><text class="dg-t" x="28" y="286" text-anchor="start"><tspan x="28" dy="0">CSV de respostas</tspan></text><text class="dg-s" x="28" y="305" text-anchor="start"><tspan x="28" dy="0">painel, por ano-base</tspan></text><rect class="dg-box" x="16" y="328" width="210" height="52" rx="6"/><text class="dg-t" x="28" y="350" text-anchor="start"><tspan x="28" dy="0">Faixas oficiais</tspan></text><text class="dg-s" x="28" y="369" text-anchor="start"><tspan x="28" dy="0">painel, 644 municípios</tspan></text><rect class="dg-box" x="276" y="150" width="150" height="130" rx="6"/><text class="dg-t" x="288" y="172" text-anchor="start"><tspan x="288" dy="0">Ingestão</tspan></text><text class="dg-s" x="288" y="191" text-anchor="start"><tspan x="288" dy="0">versionada</tspan><tspan x="288" dy="16">por edição</tspan><tspan x="288" dy="16">do índice</tspan></text><rect class="dg-core" x="476" y="150" width="180" height="130" rx="6"/><text class="dg-core-t" x="488" y="172" text-anchor="start"><tspan x="488" dy="0">Motor de cálculo</tspan></text><text class="dg-core-s" x="488" y="191" text-anchor="start"><tspan x="488" dy="0">sete índices,</tspan><tspan x="488" dy="16">rebaixamentos</tspan><tspan x="488" dy="16">e faixa geral;</tspan><tspan x="488" dy="16">regras abertas</tspan></text><rect class="dg-box" x="476" y="326" width="180" height="56" rx="6"/><text class="dg-t" x="488" y="348" text-anchor="start"><tspan x="488" dy="0">Validação</tspan></text><text class="dg-s" x="488" y="367" text-anchor="start"><tspan x="488" dy="0">644 municípios, 11 anos</tspan></text><rect class="dg-box" x="706" y="150" width="160" height="130" rx="6"/><text class="dg-t" x="718" y="172" text-anchor="start"><tspan x="718" dy="0">Diagnóstico</tspan></text><text class="dg-s" x="718" y="191" text-anchor="start"><tspan x="718" dy="0">pontos na mesa:</tspan><tspan x="718" dy="16">norma, processo</tspan><tspan x="718" dy="16">ou investimento;</tspan><tspan x="718" dy="16">simulação e se</tspan></text><rect class="dg-box" x="906" y="100" width="124" height="92" rx="6"/><text class="dg-t" x="918" y="122" text-anchor="start"><tspan x="918" dy="0">Relatório</tspan></text><text class="dg-s" x="918" y="141" text-anchor="start"><tspan x="918" dy="0">prefeito e</tspan><tspan x="918" dy="16">secretarias</tspan></text><rect class="dg-box" x="906" y="240" width="124" height="92" rx="6"/><text class="dg-t" x="918" y="262" text-anchor="start"><tspan x="918" dy="0">Evidências</tspan></text><text class="dg-s" x="918" y="281" text-anchor="start"><tspan x="918" dy="0">documento por</tspan><tspan x="918" dy="16">resposta Sim</tspan></text><path class="dg-arrow" d="M226,162 L251,162"/><path class="dg-arrow" d="M226,226 L251,226"/><path class="dg-arrow" d="M226,290 L251,290"/><path class="dg-arrow" d="M251,162 L251,290"/><path class="dg-arrow" d="M251,215 L276,215"/><path class="dg-head" d="M276,215 L268,210.5 L268,219.5 Z"/><path class="dg-arrow-own" d="M226,64 L351,64 L351,150"/><path class="dg-head-own" d="M351,150 L346.5,142 L355.5,142 Z"/><path class="dg-arrow" d="M426,215 L476,215"/><path class="dg-head" d="M476,215 L468,210.5 L468,219.5 Z"/><path class="dg-arrow" d="M226,354 L476,354"/><path class="dg-head" d="M476,354 L468,349.5 L468,358.5 Z"/><path class="dg-arrow" d="M566,326 L566,280"/><path class="dg-head" d="M566,280 L561.5,288 L570.5,288 Z"/><path class="dg-arrow" d="M656,215 L706,215"/><path class="dg-head" d="M706,215 L698,210.5 L698,219.5 Z"/><path class="dg-arrow" d="M866,195 L886,195 L886,146 L906,146"/><path class="dg-head" d="M906,146 L898,141.5 L898,150.5 Z"/><path class="dg-arrow" d="M866,235 L886,235 L886,286 L906,286"/><path class="dg-head" d="M906,286 L898,281.5 L898,290.5 Z"/></svg><svg class="diagram dg-v-narrow" viewBox="0 0 360 920" role="img" aria-labelledby="dg-v-narrow-t dg-v-narrow-d" xmlns="http://www.w3.org/2000/svg"><title id="dg-v-narrow-t">Arquitetura da proposta</title><desc id="dg-v-narrow-d">Fontes públicas do TCESP (matriz oficial, manual da edição, CSV de respostas e faixas oficiais) e dados do próprio município (AUDESP e balancetes) entram na ingestão, versionada por edição. A ingestão alimenta o motor de cálculo, validado contra as faixas oficiais de 644 municípios em 11 anos-base. O motor alimenta o diagnóstico, que gera o relatório e a lista de evidências. O AUDESP permite preenchimento prévio dos itens calculados: 850 de 1000 pontos no i-Fiscal e 650 de 1000 no i-Plan.</desc><text class="dg-h" x="16" y="20" text-anchor="start"><tspan x="16" dy="0">FONTES PÚBLICAS DO TCESP</tspan></text><rect class="dg-box" x="16" y="30" width="328" height="50" rx="6"/><text class="dg-t" x="28" y="52" text-anchor="start"><tspan x="28" dy="0">Matriz oficial</tspan></text><text class="dg-s" x="28" y="71" text-anchor="start"><tspan x="28" dy="0">planilha de instrução</tspan></text><rect class="dg-box" x="16" y="88" width="328" height="50" rx="6"/><text class="dg-t" x="28" y="110" text-anchor="start"><tspan x="28" dy="0">Manual da edição</tspan></text><text class="dg-s" x="28" y="129" text-anchor="start"><tspan x="28" dy="0">fórmulas e regras</tspan></text><rect class="dg-box" x="16" y="146" width="328" height="50" rx="6"/><text class="dg-t" x="28" y="168" text-anchor="start"><tspan x="28" dy="0">CSV de respostas</tspan></text><text class="dg-s" x="28" y="187" text-anchor="start"><tspan x="28" dy="0">painel, por ano-base</tspan></text><rect class="dg-box" x="16" y="204" width="328" height="50" rx="6"/><text class="dg-t" x="28" y="226" text-anchor="start"><tspan x="28" dy="0">Faixas oficiais</tspan></text><text class="dg-s" x="28" y="245" text-anchor="start"><tspan x="28" dy="0">painel, 644 municípios</tspan></text><text class="dg-h" x="16" y="284" text-anchor="start"><tspan x="16" dy="0">DADOS DO PRÓPRIO MUNICÍPIO</tspan></text><rect class="dg-own" x="16" y="294" width="328" height="72" rx="6"/><text class="dg-t" x="28" y="316" text-anchor="start"><tspan x="28" dy="0">AUDESP e balancetes</tspan></text><text class="dg-s" x="28" y="335" text-anchor="start"><tspan x="28" dy="0">preenchimento prévio de itens calculados:</tspan><tspan x="28" dy="16">i-Fiscal 850 e i-Plan 650 de 1000 pontos</tspan></text><rect class="dg-box" x="16" y="402" width="328" height="56" rx="6"/><text class="dg-t" x="28" y="424" text-anchor="start"><tspan x="28" dy="0">Ingestão</tspan></text><text class="dg-s" x="28" y="443" text-anchor="start"><tspan x="28" dy="0">versionada por edição do índice</tspan></text><rect class="dg-core" x="16" y="494" width="328" height="92" rx="6"/><text class="dg-core-t" x="28" y="516" text-anchor="start"><tspan x="28" dy="0">Motor de cálculo</tspan></text><text class="dg-core-s" x="28" y="535" text-anchor="start"><tspan x="28" dy="0">sete índices, rebaixamentos e faixa geral</tspan><tspan x="28" dy="16">regras abertas</tspan></text><rect class="dg-box" x="16" y="622" width="328" height="56" rx="6"/><text class="dg-t" x="28" y="644" text-anchor="start"><tspan x="28" dy="0">Validação</tspan></text><text class="dg-s" x="28" y="663" text-anchor="start"><tspan x="28" dy="0">contra 644 municípios em 11 anos-base</tspan></text><rect class="dg-box" x="16" y="714" width="328" height="76" rx="6"/><text class="dg-t" x="28" y="736" text-anchor="start"><tspan x="28" dy="0">Diagnóstico</tspan></text><text class="dg-s" x="28" y="755" text-anchor="start"><tspan x="28" dy="0">pontos na mesa: norma, processo ou</tspan><tspan x="28" dy="16">investimento; simulação e se</tspan></text><rect class="dg-box" x="16" y="826" width="160" height="76" rx="6"/><text class="dg-t" x="28" y="848" text-anchor="start"><tspan x="28" dy="0">Relatório</tspan></text><text class="dg-s" x="28" y="867" text-anchor="start"><tspan x="28" dy="0">prefeito e</tspan><tspan x="28" dy="16">secretarias</tspan></text><rect class="dg-box" x="184" y="826" width="160" height="76" rx="6"/><text class="dg-t" x="196" y="848" text-anchor="start"><tspan x="196" dy="0">Evidências</tspan></text><text class="dg-s" x="196" y="867" text-anchor="start"><tspan x="196" dy="0">documento por</tspan><tspan x="196" dy="16">resposta Sim</tspan></text><path class="dg-arrow" d="M16,113 L6,113"/><path class="dg-arrow" d="M16,171 L6,171"/><path class="dg-arrow" d="M16,55 L6,55 L6,430 L16,430"/><path class="dg-head" d="M16,430 L8,425.5 L8,434.5 Z"/><path class="dg-arrow-own" d="M180,366 L180,402"/><path class="dg-head-own" d="M180,402 L175.5,394 L184.5,394 Z"/><path class="dg-arrow" d="M180,458 L180,494"/><path class="dg-head" d="M180,494 L175.5,486 L184.5,486 Z"/><path class="dg-arrow" d="M180,622 L180,586"/><path class="dg-head" d="M180,586 L175.5,594 L184.5,594 Z"/><path class="dg-arrow" d="M344,229 L354,229 L354,650 L344,650"/><path class="dg-head" d="M344,650 L352,645.5 L352,654.5 Z"/><path class="dg-arrow" d="M16,560 L6,560 L6,752 L16,752"/><path class="dg-head" d="M16,752 L8,747.5 L8,756.5 Z"/><path class="dg-arrow" d="M96,790 L96,826"/><path class="dg-head" d="M96,826 L91.5,818 L100.5,818 Z"/><path class="dg-arrow" d="M264,790 L264,826"/><path class="dg-head" d="M264,826 L259.5,818 L268.5,818 Z"/></svg><!-- /gerado:arquitetura -->
+      <figcaption class="note">Preenchimento prévio pelo AUDESP: no <span class="nw">i-Fiscal</span>, 850 de 1000 pontos vêm de itens calculados pelo Tribunal; no <span class="nw">i-Plan</span>, 650 de 1000. Com os balancetes e as entregas do próprio município, a ideia é estimar esses itens antes do fechamento do questionário. O diagrama também está disponível como arquivo: <a href="assets/img/arquitetura-horizontal.svg">horizontal</a> e <a href="assets/img/arquitetura-vertical.svg">vertical</a>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ROADMAP E IDEIAS -->
+<section class="sec" id="roadmap" aria-labelledby="road-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Próximos passos</p>
+      <h2 id="road-t">Roadmap e ideias</h2>
+      <p class="sec-lead">Fases em ordem de dependência, sem datas. Cada fase entrega algo que dá para mostrar a uma prefeitura.</p>
+    </header>
+
+    <ol class="fases">
+      <li class="fase">
+        <span class="fase-n">Fase 1</span>
+        <h3>Motor do <span class="nw">i-Gov TI</span></h3>
+        <p>Primeiro índice calculado e validado contra as faixas oficiais. Prova de que o cálculo aberto reproduz o resultado publicado.</p>
+      </li>
+      <li class="fase">
+        <span class="fase-n">Fase 2</span>
+        <h3>Sete índices por edição</h3>
+        <p>Itens calculados, rebaixamentos e faixa geral, com relatório de validação por edição e por ano-base.</p>
+      </li>
+      <li class="fase">
+        <span class="fase-n">Fase 3</span>
+        <h3>Diagnóstico por município</h3>
+        <p>Pontos na mesa a partir de dado público, classificação por tipo de correção e simulação "e se". Piloto na janela de dezembro a março.</p>
+      </li>
+      <li class="fase">
+        <span class="fase-n">Fase 4</span>
+        <h3>Evidência e relatório</h3>
+        <p>Documento por resposta Sim, revisão jurídica e relatório para o prefeito e as secretarias.</p>
+      </li>
+      <li class="fase">
+        <span class="fase-n">Fase 5</span>
+        <h3>Plataforma</h3>
+        <p>Alertas, benchmark, API e extensão para outros estados.</p>
+      </li>
+    </ol>
+
+    <h3 class="sub-h">Ideias para explorar</h3>
+    <ul class="ideias">
+      <li class="ideia"><h4>Simulação por secretaria</h4><p>Cada secretaria vê só os próprios itens e quanto cada correção pesa na nota do município.</p></li>
+      <li class="ideia"><h4>Alertas de calendário</h4><p>Aviso antes de 31 de março e dos prazos de entrega ao AUDESP, que no <span class="nw">i-Plan</span> valem 150 pontos de pontualidade.</p></li>
+      <li class="ideia"><h4>Benchmark</h4><p>Comparação com vizinhos e com municípios do mesmo porte, faixa a faixa e índice a índice.</p></li>
+      <li class="ideia"><h4>Relatório para o prefeito</h4><p>PDF curto com a faixa provável, os pontos na mesa e quem responde por cada correção.</p></li>
+      <li class="ideia"><h4>API</h4><p>Cálculo e diagnóstico disponíveis para sistemas de gestão e consultorias que já atendem prefeituras.</p></li>
+      <li class="ideia"><h4>Outros estados</h4><p>O IEGM nacional, coordenado pelo Instituto Rui Barbosa, é aplicado por outros tribunais de contas. O motor versionado pode ganhar uma matriz por tribunal.</p></li>
+      <li class="ideia ideia-pesq">
+        <h4>Para o mestrado</h4>
+        <ul>
+          <li><b>Reprodutibilidade.</b> Dá para recalcular a faixa oficial só com dado público?</li>
+          <li><b>Monitoramento contínuo.</b> Municípios que acompanham e corrigem os pontos na mesa sobem de faixa?</li>
+          <li><b>Autodeclaração e validação.</b> Quanto a conferência in loco muda as respostas, e em quais índices?</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- MERCADO -->
+<section class="sec sec-alt" id="mercado" aria-labelledby="merc-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Mercado</p>
+      <h2 id="merc-t">Concorrência e diferencial</h2>
+      <p class="sec-lead">Diagnóstico e repositório de evidências já existem no mercado. O espaço está na forma de fazer.</p>
+    </header>
+    <div class="table-scroll">
+      <table class="tbl merc">
+        <caption class="sr">Empresas que já atuam com o IEG-M</caption>
+        <thead><tr><th scope="col">Empresa</th><th scope="col">O que oferece hoje</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">FGMAISS</th><td>Simulador de metas de efetividade do IEG-M dentro do próprio ERP de gestão.</td></tr>
+          <tr><th scope="row">Ana Smart</th><td>DIRECITY GOV, com diagnóstico, carga de dados do AUDESP e do SICONFI e repositório de evidências.</td></tr>
+          <tr><th scope="row">Fiorilli</th><td>Consultoria de planejamento para prefeituras.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="difs">
+      <li class="dif"><h3>Motor aberto e verificável</h3><p>Regras publicadas por edição e taxa de acerto contra as faixas oficiais. Quem contrata consegue conferir a conta.</p></li>
+      <li class="dif"><h3>Diagnóstico antes do contrato</h3><p>Os pontos na mesa saem de dado público, então a prefeitura vê o diagnóstico antes de assinar qualquer coisa.</p></li>
+      <li class="dif"><h3>Camada jurídica de evidência</h3><p>Cada resposta Sim com o documento que a sustenta, revisado por quem conhece a regra e a validação.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- RISCOS -->
+<section class="sec" id="riscos" aria-labelledby="risc-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Limites conhecidos</p>
+      <h2 id="risc-t">Riscos e limites</h2>
+    </header>
+    <ul class="riscos">
+      <li><h3>A matriz muda todo ano</h3><p>Motor calibrado em uma edição erra na seguinte. Resposta: regras versionadas por edição e validação a cada nova matriz.</p></li>
+      <li><h3>Só a faixa é pública</h3><p>A nota numérica por município não é publicada. A validação é por faixa, geral e por índice, e o diagnóstico trabalha com intervalos.</p></li>
+      <li><h3>Conformidade, não atalho</h3><p>O produto existe para a prefeitura cumprir e comprovar, com transparência. Nunca para marcar resposta sem lastro.</p></li>
+      <li><h3>Resposta sem evidência cai</h3><p>A validação in loco altera ou invalida o que não se sustenta. Por isso a camada de evidência vem junto do diagnóstico.</p></li>
+      <li><h3>Edições cruzadas</h3><p>Os números de pontos na mesa desta página cruzam respostas e matriz de edições diferentes. A próxima rodada usa a matriz que casa com cada ano.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FONTES -->
+<section class="sec sec-alt" id="fontes" aria-labelledby="fontes-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Transparência</p>
+      <h2 id="fontes-t">Fontes verificadas (2026-10-09)</h2>
+    </header>
+    <ul class="fontes">
+      <li>Manual, questionário e matriz de pontuação da edição 2026. <a href="https://www.tce.sp.gov.br/publicacoes/manual-ieg-m-2026" rel="noopener">tce.sp.gov.br/publicacoes/manual-ieg-m-2026</a></li>
+      <li>Comunicado de preenchimento do IEG-M 2026, dados de 2025. <a href="https://www.tce.sp.gov.br/legislacao/comunicado/preenchimento-questionarios-ieg-m-2026-dados-exercicio-2025" rel="noopener">tce.sp.gov.br/legislacao/comunicado/preenchimento-questionarios-ieg-m-2026-dados-exercicio-2025</a></li>
+      <li>Portal do IEG-M, origem das faixas oficiais e da média estadual por índice. <a href="https://iegm.tce.sp.gov.br/" rel="noopener">iegm.tce.sp.gov.br</a></li>
+      <li>Resultados do IEG-M 2025, ano-base 2024. <a href="https://www.tce.sp.gov.br/6524-iegm-aponta-falta-efetividade-87-administracoes-municipios-sp" rel="noopener">tce.sp.gov.br/6524-iegm-aponta-falta-efetividade-87-administracoes-municipios-sp</a></li>
+      <li>Dez anos do IEG-M. <a href="https://www.tce.sp.gov.br/6524-tcesp-celebra-10-anos-indice-efetividade-gestao-municipal-ieg-m" rel="noopener">tce.sp.gov.br/6524-tcesp-celebra-10-anos-indice-efetividade-gestao-municipal-ieg-m</a></li>
+      <li>Validação do TCE-SC, 83,12% das respostas confirmadas em 2018. <a href="https://www.tcesc.tc.br/radiover/43323" rel="noopener">tcesc.tc.br/radiover/43323</a></li>
+      <li>Faixas de Suzano por dimensão na imprensa local. <a href="https://noticiasdemogi.com.br/suzano-e-homenageada-pelo-tribunal-de-contas-entre-as-25-cidades-paulistas-com-melhor-gestao-efetiva/" rel="noopener">noticiasdemogi.com.br</a></li>
+      <li>IEGM nacional, Instituto Rui Barbosa. <a href="https://iegm.irbcontas.org.br/" rel="noopener">iegm.irbcontas.org.br</a></li>
+      <li>Guia rápido do IEGM do TCE-PI, com a fórmula de ponderação. <a href="https://www.tcepi.tc.br/wp-content/uploads/2022/03/Guia-rapido-iegm.pdf" rel="noopener">tcepi.tc.br, guia rápido do IEGM (PDF)</a></li>
+      <li>Ana Smart, DIRECITY GOV. <a href="https://anasmart.com.br/iegm" rel="noopener">anasmart.com.br/iegm</a></li>
+      <li>FGMAISS. <a href="http://www.fgmaiss.com.br/site/index.php" rel="noopener">fgmaiss.com.br</a></li>
+      <li>Fiorilli, consultoria. <a href="https://fiorilli.com.br/assessoria-e-consultoria/consultoria/" rel="noopener">fiorilli.com.br/assessoria-e-consultoria/consultoria</a></li>
+    </ul>
+    <div class="dados-box">
+      <h3>Dados usados nesta página</h3>
+      <p>Cópias dos arquivos públicos: <a href="data/faixas_all.json">faixas_all.json</a> (faixas oficiais por município, índice e ano-base, 2014 a 2024) e <a href="data/media_estadual_por_indice_2014_2024.json">media_estadual_por_indice_2014_2024.json</a> (média estadual por índice). Agregados calculados a partir deles: <a href="data/retrato_estado.json">retrato_estado.json</a>, <a href="data/media_estadual.json">media_estadual.json</a> e <a href="data/exemplo_suzano.json">exemplo_suzano.json</a>.</p>
+      <p>Pesos e limites das faixas segundo o manual do IEG-M e o guia rápido do TCE-PI. Os valores de item das telas simuladas vêm da matriz oficial da edição 2026.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p class="foot-brand">Faixa Prévia <span class="brand-tag">nome provisório</span></p>
+    <p><strong>Iniciativa independente, sem vínculo com o Tribunal de Contas do Estado de São Paulo (TCESP).</strong> Não usa marca nem identidade visual do Tribunal. Os dados são públicos; as telas são simulações.</p>
+    <p class="foot-meta">Proposta em exploração. Versão de 9 de outubro de 2026.</p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

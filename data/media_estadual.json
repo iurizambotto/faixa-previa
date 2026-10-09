@@ -1,0 +1,128 @@
+{
+ "fonte": "Painel do IEG-M do TCESP, faixas oficiais e média estadual por índice",
+ "observacao": "Arquivos derivados de data/faixas_all.json e data/media_estadual_por_indice_2014_2024.json",
+ "escala": "0 a 1; média dos 644 municípios publicada pelo painel",
+ "pesos": {
+  "i-Plan": 20,
+  "i-Fiscal": 20,
+  "i-Educ": 20,
+  "i-Saúde": 20,
+  "i-Amb": 10,
+  "i-Cidade": 5,
+  "i-Gov TI": 5
+ },
+ "media_por_indice": {
+  "2014": {
+   "i-Plan": 0.5815,
+   "i-Fiscal": 0.7327,
+   "i-Educ": 0.8344,
+   "i-Saúde": 0.809,
+   "i-Amb": 0.6708,
+   "i-Cidade": 0.5211,
+   "i-Gov TI": 0.5774
+  },
+  "2015": {
+   "i-Plan": 0.521,
+   "i-Fiscal": 0.7204,
+   "i-Educ": 0.7028,
+   "i-Saúde": 0.7632,
+   "i-Amb": 0.6595,
+   "i-Cidade": 0.4694,
+   "i-Gov TI": 0.5182
+  },
+  "2016": {
+   "i-Plan": 0.4985,
+   "i-Fiscal": 0.7151,
+   "i-Educ": 0.6837,
+   "i-Saúde": 0.7554,
+   "i-Amb": 0.6194,
+   "i-Cidade": 0.476,
+   "i-Gov TI": 0.549
+  },
+  "2017": {
+   "i-Plan": 0.3653,
+   "i-Fiscal": 0.6372,
+   "i-Educ": 0.577,
+   "i-Saúde": 0.6725,
+   "i-Amb": 0.6167,
+   "i-Cidade": 0.4939,
+   "i-Gov TI": 0.5368
+  },
+  "2018": {
+   "i-Plan": 0.3884,
+   "i-Fiscal": 0.6472,
+   "i-Educ": 0.603,
+   "i-Saúde": 0.6926,
+   "i-Amb": 0.632,
+   "i-Cidade": 0.5014,
+   "i-Gov TI": 0.5488
+  },
+  "2019": {
+   "i-Plan": 0.4763,
+   "i-Fiscal": 0.6475,
+   "i-Educ": 0.5589,
+   "i-Saúde": 0.6238,
+   "i-Amb": 0.3597,
+   "i-Cidade": 0.3751,
+   "i-Gov TI": 0.4552
+  },
+  "2020": {
+   "i-Plan": 0.4012,
+   "i-Fiscal": 0.6196,
+   "i-Educ": 0.5286,
+   "i-Saúde": 0.5892,
+   "i-Amb": 0.3592,
+   "i-Cidade": 0.3377,
+   "i-Gov TI": 0.4244
+  },
+  "2021": {
+   "i-Plan": 0.2893,
+   "i-Fiscal": 0.6403,
+   "i-Educ": 0.4974,
+   "i-Saúde": 0.5292,
+   "i-Amb": 0.3304,
+   "i-Cidade": 0.3516,
+   "i-Gov TI": 0.4217
+  },
+  "2022": {
+   "i-Plan": 0.2845,
+   "i-Fiscal": 0.6353,
+   "i-Educ": 0.5214,
+   "i-Saúde": 0.5617,
+   "i-Amb": 0.3816,
+   "i-Cidade": 0.3998,
+   "i-Gov TI": 0.4731
+  },
+  "2023": {
+   "i-Plan": 0.316,
+   "i-Fiscal": 0.5687,
+   "i-Educ": 0.5457,
+   "i-Saúde": 0.6048,
+   "i-Amb": 0.406,
+   "i-Cidade": 0.4023,
+   "i-Gov TI": 0.4959
+  },
+  "2024": {
+   "i-Plan": 0.318,
+   "i-Fiscal": 0.6081,
+   "i-Educ": 0.5696,
+   "i-Saúde": 0.6208,
+   "i-Amb": 0.3885,
+   "i-Cidade": 0.4076,
+   "i-Gov TI": 0.5181
+  }
+ },
+ "media_ponderada_iegm": {
+  "2014": 0.7135,
+  "2015": 0.6568,
+  "2016": 0.6437,
+  "2017": 0.5636,
+  "2018": 0.5819,
+  "2019": 0.5388,
+  "2020": 0.5017,
+  "2021": 0.463,
+  "2022": 0.4824,
+  "2023": 0.4925,
+  "2024": 0.5084
+ }
+}

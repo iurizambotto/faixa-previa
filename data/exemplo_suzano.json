@@ -1,0 +1,120 @@
+{
+ "fonte": "Painel do IEG-M do TCESP, faixas oficiais e média estadual por índice",
+ "observacao": "Arquivos derivados de data/faixas_all.json e data/media_estadual_por_indice_2014_2024.json",
+ "municipio": "Suzano",
+ "codigo_ibge": 3552502,
+ "historico_iegm": {
+  "2014": "B",
+  "2015": "B",
+  "2016": "B",
+  "2017": "C+",
+  "2018": "C+",
+  "2019": "C+",
+  "2020": "C",
+  "2021": "C+",
+  "2022": "C+",
+  "2023": "C+",
+  "2024": "B"
+ },
+ "faixas_por_indice_2024": {
+  "i-Plan": "B",
+  "i-Fiscal": "B",
+  "i-Educ": "C+",
+  "i-Saúde": "B",
+  "i-Amb": "C+",
+  "i-Cidade": "B+",
+  "i-Gov TI": "B+"
+ },
+ "vizinhos_alto_tiete_2024": {
+  "Arujá": {
+   "iegm": "C+",
+   "i-Plan": "C",
+   "i-Fiscal": "C+",
+   "i-Educ": "C+",
+   "i-Saúde": "B",
+   "i-Amb": "C+",
+   "i-Cidade": "B+",
+   "i-Gov TI": "B+"
+  },
+  "Biritiba-Mirim": {
+   "iegm": "C",
+   "i-Plan": "C",
+   "i-Fiscal": "C",
+   "i-Educ": "C",
+   "i-Saúde": "C",
+   "i-Amb": "C",
+   "i-Cidade": "C",
+   "i-Gov TI": "C"
+  },
+  "Ferraz de Vasconcelos": {
+   "iegm": "B",
+   "i-Plan": "C",
+   "i-Fiscal": "B",
+   "i-Educ": "B+",
+   "i-Saúde": "B",
+   "i-Amb": "B",
+   "i-Cidade": "B",
+   "i-Gov TI": "C+"
+  },
+  "Guararema": {
+   "iegm": "B",
+   "i-Plan": "C",
+   "i-Fiscal": "B",
+   "i-Educ": "B+",
+   "i-Saúde": "B+",
+   "i-Amb": "C+",
+   "i-Cidade": "C",
+   "i-Gov TI": "C"
+  },
+  "Itaquaquecetuba": {
+   "iegm": "C",
+   "i-Plan": "C",
+   "i-Fiscal": "B",
+   "i-Educ": "C+",
+   "i-Saúde": "C",
+   "i-Amb": "C",
+   "i-Cidade": "B+",
+   "i-Gov TI": "C"
+  },
+  "Mogi das Cruzes": {
+   "iegm": "C",
+   "i-Plan": "C",
+   "i-Fiscal": "B",
+   "i-Educ": "C+",
+   "i-Saúde": "C+",
+   "i-Amb": "C+",
+   "i-Cidade": "C",
+   "i-Gov TI": "B+"
+  },
+  "Salesópolis": {
+   "iegm": "C",
+   "i-Plan": "C",
+   "i-Fiscal": "B",
+   "i-Educ": "C",
+   "i-Saúde": "C",
+   "i-Amb": "C",
+   "i-Cidade": "C",
+   "i-Gov TI": "C+"
+  },
+  "Santa Isabel": {
+   "iegm": "C",
+   "i-Plan": "C",
+   "i-Fiscal": "C+",
+   "i-Educ": "C",
+   "i-Saúde": "C+",
+   "i-Amb": "C",
+   "i-Cidade": "C",
+   "i-Gov TI": "C"
+  },
+  "Suzano": {
+   "iegm": "B",
+   "i-Plan": "B",
+   "i-Fiscal": "B",
+   "i-Educ": "C+",
+   "i-Saúde": "B",
+   "i-Amb": "C+",
+   "i-Cidade": "B+",
+   "i-Gov TI": "B+"
+  }
+ }
+}
